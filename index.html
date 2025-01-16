@@ -1,1 +1,76 @@
-.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Apps</title>
+  <style>
+    body {
+      transition: background 1s ease; /* Smooth transition when background changes */
+    }
+    
+    /* Style for the button */
+    .play-button {
+      width: 200px;
+      height: 100px;
+      background-color: rgba(0, 0, 0, 0.6); /* Optional, darken the button */
+      color: white;
+      font-size: 16px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: none;
+      border-radius: 10px;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Optional: Hover effect for button */
+    .play-button:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Button to trigger the GIF background and play the song -->
+  <button class="play-button" onclick="startMusic()">Click Here</button>
+
+  <!-- Audio element for the looped song -->
+  <audio id="background-audio" loop>
+    <source src="kv.mp3" type="audio/mp3"> <!-- Replace with your audio file -->
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    function startMusic() {
+      // Remove the button
+      var button = document.querySelector('.play-button');
+      button.style.opacity = '0'; // Fade out before removal
+      setTimeout(function() {
+        button.remove(); // Remove the button after fade out
+      }, 300); // Wait 300ms for fade effect
+
+      // Change the background to the GIF
+      document.body.style.backgroundImage = "url('kv.gif')"; // Replace with your GIF URL
+      // document.body.style.backgroundSize = "cover";
+         document.body.style.backgroundPosition = "center";
+      document.body.style.backgroundAttachment = "fixed"; // Optional: make the background fixed when scrolling
+      document.body.style.height = "100vh";
+      document.body.style.width = "100vh";
+      document.body.style.backgroundRepeat = "no-repeat";
+      document.body.style.backgroundSize = "100% 100%";
+      
+      // Start playing the audio
+      var audio = document.getElementById('background-audio');
+      audio.play();
+    }
+  </script>
+
+</body>
+</html>
